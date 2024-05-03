@@ -1,0 +1,56 @@
+%
+o<load_tool> sub
+
+#<toolnum> = #4000
+
+#<firstnum> = 4000
+
+G90
+G49
+G53 G0 Z[#<_ini[AXIS_Z]MAX_LIMIT>-0.1]
+
+o200 if [#<toolnum> EQ 1]
+
+        #<firstnum> = [#<firstnum>+1.0]
+        
+o200 elseif [#<toolnum> EQ 2]
+     
+        #<firstnum> = [#<firstnum>+4.0]
+        
+o200 elseif [#<toolnum> EQ 3]
+     
+        #<firstnum> = [#<firstnum>+7.0]
+        
+o200 elseif [#<toolnum> EQ 4]    
+     
+        #<firstnum> = [#<firstnum>+10.0]
+        
+o200 elseif [#<toolnum> EQ 5]
+     
+        #<firstnum> = [#<firstnum>+13.0]
+        
+o200 elseif [#<toolnum> GT 5]
+       (print, toolnum dy 6)
+o200 endif   
+     
+G53 G0 X[#[#<firstnum>]] Y[#[#<firstnum>+1]]
+;M65
+G4 P1.0
+G53 G0 Z[#[#<firstnum>+2]]
+G4 P1.0
+M3 S[#<_ini[ATC]SPINDLE_SPEED_CW>]
+G4 P 2.0
+G91 G1 Z #<_ini[ATC]ENGAG_Z> F #<_ini[ATC]Z_ENGAG_FEED>
+G90
+G53 G0 Z[#[#<firstnum>+2]]
+M5
+G4 P1.0
+            (print, Tool released)  
+G53 G0 Z[#<_ini[AXIS_Z]MAX_LIMIT>-0.1] 
+
+#4000 = #<_selected_tool>
+
+o<load_tool> endsub
+
+M2
+%

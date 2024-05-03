@@ -1,0 +1,49 @@
+%
+o<go_to> sub
+
+#<toolnum> = #<_current_tool>
+
+#<firstnum> = 4000
+#4016 = #<_ini[ATC]CHANGEX>
+#4017 = #<_ini[ATC]CHANGEY>
+#4018 = #<_ini[ATC]CHANGEZ>
+
+G90
+G49
+G53 G0 Z[#<_ini[AXIS_Z]MAX_LIMIT>-0.1]
+
+o200 if [#<toolnum> EQ 1]
+
+        #<firstnum> = [#<firstnum>+1.0]
+        
+o200 elseif [#<toolnum> EQ 2]
+     
+        #<firstnum> = [#<firstnum>+4.0]
+        
+o200 elseif [#<toolnum> EQ 3]
+     
+        #<firstnum> = [#<firstnum>+7.0]
+        
+o200 elseif [#<toolnum> EQ 4]    
+     
+        #<firstnum> = [#<firstnum>+10.0]
+        
+o200 elseif [#<toolnum> EQ 5]
+     
+        #<firstnum> = [#<firstnum>+13.0]
+        
+o200 elseif [[#<toolnum> GT 5] or [#<toolnum> EQ 0]]
+
+        #<firstnum> = [#<firstnum>+16.0]
+        
+o200 endif   
+
+     G53 G0 X[#[#<firstnum>]] Y[#[#<firstnum>+1]]
+     G4 P1.0
+     G53 G0 Z[#[#<firstnum>+2]]
+     G4 P1.0
+     
+o<go_to> endsub
+
+M2
+%

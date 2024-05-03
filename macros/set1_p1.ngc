@@ -1,0 +1,14 @@
+(Note:moving machine for do this to tool pointin)
+
+o<set1_p1>sub
+G49
+
+G28.1
+
+G10 L1 P1 X[ABS[#5161]] Y[ABS[#5162]] Z[ABS[#5163]]
+
+G53 G0 Z0
+
+G4 P0.2
+
+G28.1

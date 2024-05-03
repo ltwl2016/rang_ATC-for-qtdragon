@@ -1,0 +1,23 @@
+
+o<sternm_2> sub
+
+#<depth>    = #1 (=0.1 shendu)
+#<w>        = #2 (=150 withe)
+#<l>        = #3 (=150 hight)
+#<s>        = #4 (=1 usr)
+#<speed>    = #5 (=500 shudu)
+#<rpm>      = #6 (=1000 zhuanshu)
+
+G64 P0.1
+G21
+G90 G40
+ 
+ o200 if[#<_current_tool> EQ 0]
+ o200 return [999]
+ o200 endif
+
+G0X0Y0
+G0Z0
+o<sternm_2> endsub
+
+M2
