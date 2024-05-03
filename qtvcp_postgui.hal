@@ -1,0 +1,69 @@
+#  ---手动换到信号发送到 qtdragon对话窗---
+
+#net tool-change-request    => hal_manualtoolchange.change
+#net tool-change-confirmed  <= hal_manualtoolchange.changed
+#net tool-number            => hal_manualtoolchange.number
+net toolnumb  qtdragon.toolchange-number <= iocontrol.0.tool-number
+
+net spindle-speed-feedback  =>  spindle.0.speed-out-rps => spindle.0.speed-in
+
+
+
+# the unlink pin commands are only used, because they are connected 
+# in core_sim.hal and we use this file to simulate
+unlinkp iocontrol.0.tool-change
+unlinkp iocontrol.0.tool-changed
+unlinkp iocontrol.0.tool-prep-number
+
+net tool-change      hal_manualtoolchange.change   <=  iocontrol.0.tool-change 
+net tool-changed     hal_manualtoolchange.changed  <=  iocontrol.0.tool-changed
+net tool-prep-number hal_manualtoolchange.number   <=  iocontrol.0.tool-prep-number
+
+net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+
+# external offset spindle auto raise on pause
+net spindle-pause     qtdragon.spindle-inhibit spindle.0.inhibit
+net eoffset_clear    qtdragon.eoffset-clear => axis.z.eoffset-clear
+net eoffset_count    qtdragon.eoffset-spindle-count => axis.z.eoffset-counts
+net eoffset          qtdragon.eoffset-value <= axis.z.eoffset
+setp axis.z.eoffset-enable 1
+setp axis.z.eoffset-scale 1.0
+#net probe-in     =>  qtdragon.led-probe
+net probe-in     =>  qtdragon.led-probe
+#  ---数字输入/信号---
+net io_in_00     hm2_lite.0.gpio.012.in_not   =>  qtdragon.led_in_00
+net io_in_01     hm2_lite.0.gpio.013.in_not   =>  qtdragon.led_in_01
+net io_in_02     hm2_lite.0.gpio.014.in_not   =>  qtdragon.led_in_02
+net io_in_03     hm2_lite.0.gpio.015.in_not   =>  qtdragon.led_in_03
+net io_in_04     hm2_lite.0.gpio.016.in_not   =>  qtdragon.led_in_04
+net io_in_05     hm2_lite.0.gpio.017.in_not   =>  qtdragon.led_in_05
+net min-home-x   hm2_lite.0.gpio.018.in_not   =>  qtdragon.led_in_06
+net min-home-y   hm2_lite.0.gpio.019.in_not   =>  qtdragon.led_in_07
+net min-home-z   hm2_lite.0.gpio.020.in_not   =>  qtdragon.led_in_08
+net min-home-y2  hm2_lite.0.gpio.021.in_not   =>  qtdragon.led_in_09
+net estop-ext    hm2_lite.0.gpio.022.in_not   =>  qtdragon.led_in_10
+net probe-in     hm2_lite.0.gpio.023.in_not   =>  qtdragon.led_in_11
+net io_in_12     hm2_lite.0.gpio.024.in_not   =>  qtdragon.led_in_12
+net io_in_13     hm2_lite.0.gpio.025.in_not   =>  qtdragon.led_in_13
+net io_in_14     hm2_lite.0.gpio.026.in_not   =>  qtdragon.led_in_14
+net io_in_15     hm2_lite.0.gpio.027.in_not   =>  qtdragon.led_in_15
+net io_in_16     hm2_lite.0.gpio.028.in_not   =>  qtdragon.led_in_16
+net io_in_17     hm2_lite.0.gpio.029.in_not   =>  qtdragon.led_in_17
+#  ---数字/输出信号---
+net io_out_00          hm2_lite.0.gpio.000.out     =>  qtdragon.led_out_00
+net coolant-mist       hm2_lite.0.gpio.001.out     =>  qtdragon.led_out_01
+net coolant-flood      hm2_lite.0.gpio.002.out     =>  qtdragon.led_out_02
+net io_out_03          hm2_lite.0.gpio.003.out     =>  qtdragon.led_out_03
+net machine-is-on      hm2_lite.0.gpio.004.out     =>  qtdragon.led_out_04
+net spindle-enable     hm2_lite.0.gpio.005.out     =>  qtdragon.led_out_05
+net spindle-cw         hm2_lite.0.gpio.006.out     =>  qtdragon.led_out_06
+net spindle-ccw        hm2_lite.0.gpio.007.out     =>  qtdragon.led_out_07
+net io_out_08          hm2_lite.0.gpio.008.out     =>  qtdragon.led_out_08
+net io_out_09          hm2_lite.0.gpio.009.out     =>  qtdragon.led_out_09
+net io_out_10          hm2_lite.0.gpio.010.out     =>  qtdragon.led_out_10
+net io_out_11          hm2_lite.0.gpio.011.out     =>  qtdragon.led_out_11
+
+
+
+
+

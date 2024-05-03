@@ -1,0 +1,25 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 700x475+713+111
+placeFrames 0.3561046511627907
+set ::ratio 0.3561046511627907
+set ::old_w_leftf 160
+set ::watchlist {
+    sig+estop-out
+    pin+iocontrol.0.tool-prepare
+    pin+qtdragon.spindle-is-at-speed
+    sig+spindle-at-speed
+    pin+spindle.0.at-speed
+    pin+qtdragon.sim-panel.selectx
+    pin+qtdragon.sim-panel.selecty
+    pin+qtdragon.sim-panel.selectz
+    pin+hm2_lite.0.gpio.023.in_not
+    pin+qtdragon.led-probe
+}
+set ::workmode showhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
