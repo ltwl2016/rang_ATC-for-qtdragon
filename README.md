@@ -1,3 +1,5 @@
+Markdown
+![screen](./main/screenshots/01a.png)
 --ATC_RANG FOR QTDRAGON OF LINUXCNC--
 This is a configuration file that I personally use. I modified the qtdragon ui of Linuxcnc to use in-line tool change. It also added a signal to be displayed on the "Tool" page. On the main page, you can directly click the button for automatic tool change and manual tool change and settings. The button for tool position is located on the "Set tool position" button. This interface is in Chinese and is mainly provided as a reference for the convenience of users in China! Please refer to the screenshot for specific details. This configuration uses LinuxCNC Pncconf, an old FPGA card with an ominous name. The name is similar to hm2_lite. The version must be version 2.9.2 or 2.10.
 
